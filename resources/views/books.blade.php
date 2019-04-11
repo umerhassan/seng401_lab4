@@ -41,11 +41,12 @@ html, body {
 
 .book {
   display: inline-block;
-  margin: 2em 0;
+  margin: 2em 13px;
   border: 1px solid white;
   border-radius: 8px;
-  width: 100%;
-  min-height: 500px;
+  width: 15%;
+  min-height: 430px;
+  vertical-align: top;
   text-align: center;
 
 }
@@ -56,7 +57,13 @@ html, body {
   padding: 0.5em;
 }
 
+.book-cover > img {
+  width: 200px;
+  height: 300px;
+  align: center;
+  margin-top: 20px;
 
+}
 
 .book-info {
   /* flex: 1; */
@@ -72,8 +79,7 @@ html, body {
   color: white;
 }
 
-iframe {  width:95%; height:770px;
-}
+
 
 
 </style>
@@ -92,14 +98,12 @@ iframe {  width:95%; height:770px;
       $set[$data->bookID] = true; ?>
       <div class="book">
         <div class="book-cover">
-          <iframe src="https://www.youtube.com/embed/{{$data->publisher}}">
-          </iframe>
-          <!-- <img src="{{$data->image}}"> -->
+          <img src="{{$data->image}}">
         </div>
         <div class="book-info">
-          <p>Name: <span class="info-content">{{$data->name}}</span>
-          IMDb: <span class="info-content">{{$data->ISBN}}</span>
-          Year: <span class="info-content">{{$data->year}}</span></p>
+          <p>Name: <span class="info-content">{{$data->name}}</span></p>
+          <p>IMDb: <span class="info-content">{{$data->ISBN}}</span></p>
+          <p>Year: <span class="info-content">{{$data->year}}</span></p>
 
           @if (!Auth::guest())
             <form method="POST" action="{{url('books/subscribe')}}">
@@ -122,7 +126,7 @@ iframe {  width:95%; height:770px;
           <form method="POST" action="{{url('books/comments')}}">
             @csrf
             <input type="hidden" name="book_ID" value="{{$data->bookID}}">
-            <input class="btn" type="submit" value="View Comments">
+            <input class="btn" type="submit" value="Watch">
           </form>
         </div>
       </div>

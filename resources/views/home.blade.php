@@ -79,25 +79,23 @@ form > .button{
               <br>
 
               <div class="home-section" id="borrow-list">
-                <h4>Your Books</h4>
+                <h4>Your Liked Trailers</h4>
                 @if(count($borrows)>0)
                 <table border=1 class="list">
                   <tr>
                     <th>Image</th>
-                    <th>Book Name</th>
-                    <th>Currently Subscribing</th>
+                    <th>Name</th>
                   </tr>
                   @foreach ($borrows as $key => $data)
                     <tr>
-                      <td><img src="{{$data->image}}"></td>
-                      <td>{{$data->book_ID}}</td>
+                      <td><img src="{{$data->image}}" style="width:200px; height: 300px;"></td>
                       <td>{{$data->bookName}}</td>
 
                     </tr>
                   @endforeach
                 </table>
                 @else
-                  <p> You haven't subscribed to any books. </p>
+                  <p> You haven't subscribed to any trailers. </p>
                 @endif
                 <!-- <table border=1 class="list">
                   @foreach ($borrows as $key => $data)
@@ -113,15 +111,13 @@ form > .button{
               @if ($role === 'admin')
 
               <div class="home-section" id="books-list">
-                <h4>Books Table</h4>
+                <h4>Trailers Table</h4>
                 <table border=1 class="list">
                   <tr>
                     <th>ID</th>
-                    <th>ISBN</th>
+                    <th>IMDb</th>
                     <th>Name</th>
-                    <th>Author</th>
-                    <th>Published Year</th>
-                    <th>Publisher</th>
+                    <th>Year</th>
                     <th>Image</th>
                     <th>Status</th>
                   </tr>
@@ -130,33 +126,28 @@ form > .button{
                       <td>{{$data->id}}</td>
                       <td>{{$data->ISBN}}</td>
                       <td>{{$data->name}}</td>
-                      <td>{{$data->author}}</td>
                       <td>{{$data->year}}</td>
-                      <td>{{$data->publisher}}</td>
-                      <td>{{$data->image}}</td>
+                      <td><img src="{{$data->image}}" style="width:200px; height: 300px;"></td>
                       <td>{{$data->status}}</td>
                     </tr>
                   @endforeach
                 </table>
                 <form method="POST" action="{{url('books/changeBook')}}">
                   @csrf
-                  <h3>Update Book </h3>
-                  <label>Book ID</label>
+                  <h3>Update Trailer </h3>
+                  <label>ID</label>
                   <input class="input-box" type="text" name="book_ID" value="">
 
-                  <label>ISBN</label>
+                  <label>IMDb</label>
                   <input class="input-box" type="text" name="book_ISBN" value="">
 
-                  <label>Book Name</label>
+                  <label>Name</label>
                   <input class="input-box" type="text" name="book_name" value="">
-
-                  <label>Book Author</label>
-                  <input class="input-box" type="text" name="book_author" value="">
                   <br>
-                  <label>Published Year</label>
+                  <label>Year</label>
                   <input class="input-box" type="text" name="book_year" value="">
 
-                  <label>Publisher</label>
+                  <label>Video ID</label>
                   <input class="input-box" type="text" name="book_publisher" value="">
 
                   <label>Image</label>
@@ -165,8 +156,8 @@ form > .button{
                 </form>
                 <form method="POST" action="{{url('books/removeBook')}}">
                   @csrf
-                  <h3>Remove Book</h3>
-                  <label>Book ID</label>
+                  <h3>Remove Trailers</h3>
+                  <label>ID</label>
                   <input class="input-box" type="text" name="book_ID" value="">
                   <input class="btn button" type="submit" value="Remove">
                 </form>
@@ -219,36 +210,17 @@ form > .button{
                   <table border=1 class="list">
                     <tr>
                       <th>ID</th>
-                      <th>Book ID</th>
-                      <th>Book Name</th>
+                      <th>Name</th>
                       <th>User ID</th>
-                      <th>Subscribing</th>
                     </tr>
                     @foreach ($subscriptions as $key => $data)
                       <tr>
-                        <td>{{$data->id}}</td>
                         <td>{{$data->book_ID}}</td>
                         <td>{{$data->bookName}}</td>
                         <td>{{$data->user_ID}}</td>
-                        <td>{{$data->subscribing}}</td>
                       </tr>
                     @endforeach
                   </table>
-                  <form method="POST" action="{{url('subscriptions/changeSubscription')}}">
-                    @csrf
-                    <h3>Subscribe/Unsubscribe User to Book</h3>
-                    <label>User ID</label>
-                    <input class="input-box" type="text" name="user_ID" value="">
-                    <label>Book ID</label>
-                    <input class="input-box" type="text" name="book_ID" value="">
-
-                    <label>Subscribing</label>
-                    <select class="input-box" name="subscribing">
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
-                    </select>
-                    <input class="btn button" type="submit" value="Update">
-                  </form>
                 </div>
 
                 <br>
@@ -258,8 +230,7 @@ form > .button{
                   <table border=1 class="list">
                     <tr>
                       <th>ID</th>
-                      <th>Book ID</th>
-                      <th>Book Name</th>
+                      <th>Name</th>
                       <th>User ID</th>
                       <th>Comment</th>
                       <th>Updated At</th>
@@ -267,7 +238,6 @@ form > .button{
                     @foreach ($comments as $key => $data)
                       <tr>
                         <td>{{$data->id}}</td>
-                        <td>{{$data->book_ID}}</td>
                         <td>{{$data->bookName}}</td>
                         <td>{{$data->user_ID}}</td>
                         <td>{{$data->text}}</td>

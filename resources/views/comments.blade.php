@@ -33,7 +33,7 @@ html, body {
 }
 
 .title {
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
     color: white;
 }
@@ -58,6 +58,8 @@ html, body {
 }
 
 
+iframe {
+  margin-top: 20px;width:99%; height:980px;}
 
 .comment-list {
 
@@ -74,7 +76,9 @@ html, body {
 @section('content')
 <div class="block-center position-ref">
   <div class="title m-b-md">
-    Book Name: {{$bookName->name}}
+    Name: {{$bookName->name}}
+    <iframe src="https://www.youtube.com/embed/{{$publisher->publisher}}">
+    </iframe>
 
   </div>
   <div class="comment-list">

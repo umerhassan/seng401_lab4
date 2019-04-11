@@ -27,9 +27,11 @@ class CommentController extends Controller
     public function index($book_ID)
     {
         $bookName = Book::where('id', '=', $book_ID)->select('name')->first();
+        $publisher = Book::where('id', '=', $book_ID)->select('publisher')->first();
         $comments = Comment::where('book_ID', '=', $book_ID)->get();
 
         return view('comments', ['bookName' => $bookName,
+          'publisher' => $publisher,
           'bookID' => $book_ID,
           'comments' => $comments,
         ]);
