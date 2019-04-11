@@ -79,11 +79,11 @@
 
             <div class="content">
                 <div class="title">
-                    Online Bookstore
+                    Popcorn Flexxer
                 </div>
 
                 <div class="links">
-                    <a href="/books">List of Books</a>
+                    <a href="/books">List of Trailers</a>
                 </div>
 
 

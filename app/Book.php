@@ -15,11 +15,6 @@ class Book extends Model
       return $this->hasMany('App\Subscription');
     }
 
-
-    public function authors(){
-      return $this->hasMany('App\Author');
-    }
-
     public function comments(){
       return $this->hasMany('App\Comment');
     }

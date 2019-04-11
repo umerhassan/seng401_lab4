@@ -75,6 +75,7 @@ html, body {
 <div class="block-center position-ref">
   <div class="title m-b-md">
     Book Name: {{$bookName->name}}
+
   </div>
   <div class="comment-list">
     @foreach ($comments as $key => $data)
@@ -90,6 +91,8 @@ html, body {
         <form method="POST" action="{{url('comment')}}">
           @csrf
           <input type="hidden" name="book_ID" value="{{$bookID}}">
+
+
           <input type="hidden" name="user_ID" value="{{Auth::user()->id}}">
           <textarea name="book_comment"></textarea>
           <input class="btn" type="submit" value="Comment">

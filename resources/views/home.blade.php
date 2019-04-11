@@ -83,15 +83,16 @@ form > .button{
                 @if(count($borrows)>0)
                 <table border=1 class="list">
                   <tr>
-                    <th>Book ID</th>
+                    <th>Image</th>
                     <th>Book Name</th>
                     <th>Currently Subscribing</th>
                   </tr>
                   @foreach ($borrows as $key => $data)
                     <tr>
+                      <td><img src="{{$data->image}}"></td>
                       <td>{{$data->book_ID}}</td>
                       <td>{{$data->bookName}}</td>
-                      <td>{{$data->subscribing}}</td>
+
                     </tr>
                   @endforeach
                 </table>
@@ -212,40 +213,6 @@ form > .button{
 
                 <br>
 
-
-                <div class="home-section" id="authors-list">
-                  <h4>Authors Table</h4>
-                  <table border=1 class="list">
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                    </tr>
-                    @foreach ($authors as $key => $data)
-                      <tr>
-                        <td>{{$data->id}}</td>
-                        <td>{{$data->name}}</td>
-                      </tr>
-                    @endforeach
-                  </table>
-                  <form method="POST" action="{{url('authors/changeAuthor')}}">
-                    @csrf
-                      <h3>Update Author </h3>
-                    <label>Author ID</label>
-                    <input class="input-box" type="text" name="author_ID" value="">
-                    <label>Author Name</label>
-                    <input class="input-box" type="text" name="author_name" value="">
-                    <input class="btn button" type="submit" value="Update">
-                  </form>
-                  <form method="POST" action="{{url('authors/removeAuthor')}}">
-                    @csrf
-                      <h3>Remove Author </h3>
-                    <label>Author ID</label>
-                    <input class="input-box" type="text" name="author_ID" value="">
-                    <input class="btn button" type="submit" value="Remove">
-                  </form>
-                </div>
-
-                <br>
 
                 <div class="home-section" id="subscriptions-list">
                   <h4>Subscriptions Table</h4>

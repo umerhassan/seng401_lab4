@@ -44,9 +44,9 @@ html, body {
   margin: 2em 0;
   border: 1px solid white;
   border-radius: 8px;
-  width: 15%;
+  width: 100%;
   min-height: 500px;
-  vertical-align: top;
+  text-align: center;
 
 }
 
@@ -56,12 +56,7 @@ html, body {
   padding: 0.5em;
 }
 
-.book-cover > img {
-  width: 100px;
-  height: 100px;
-  align: center;
 
-}
 
 .book-info {
   /* flex: 1; */
@@ -77,7 +72,8 @@ html, body {
   color: white;
 }
 
-
+iframe {  width:95%; height:770px;
+}
 
 
 </style>
@@ -86,7 +82,7 @@ html, body {
 @section('content')
 <div class="block-center position-ref">
   <div class="title m-b-md">
-      BOOKS
+      Trailers
   </div>
   <?php $set = array(); ?>
   <div class="book-list">
@@ -96,14 +92,14 @@ html, body {
       $set[$data->bookID] = true; ?>
       <div class="book">
         <div class="book-cover">
-          <img src="{{$data->image}}">
+          <iframe src="https://www.youtube.com/embed/{{$data->publisher}}">
+          </iframe>
+          <!-- <img src="{{$data->image}}"> -->
         </div>
         <div class="book-info">
-          <p>Name: <span class="info-content">{{$data->name}}</span></p>
-          <p>ISBN: <span class="info-content">{{$data->ISBN}}</span></p>
-          <p>Author: <span class="info-content">{{$data->author}}</span></p>
-          <p>Publication Year: <span class="info-content">{{$data->year}}</span></p>
-          <p>Publisher: <span class="info-content">{{$data->publisher}}</span></p>
+          <p>Name: <span class="info-content">{{$data->name}}</span>
+          IMDb: <span class="info-content">{{$data->ISBN}}</span>
+          Year: <span class="info-content">{{$data->year}}</span></p>
 
           @if (!Auth::guest())
             <form method="POST" action="{{url('books/subscribe')}}">

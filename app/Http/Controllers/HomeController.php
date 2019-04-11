@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Book;
-use App\Author;
 use App\Subscription;
 use App\Comment;
 
@@ -36,19 +35,21 @@ class HomeController extends Controller
           ->select(
             'subscriptions.*',
             'books.name as bookName',
+            'books.image as image',
           )->orderBy('book_ID', 'asc')->get();
         $users = User::orderBy('id', 'asc')->get();
         $books = Book::orderBy('id', 'asc')->get();
-        $authors = Author::orderBy('id', 'asc')->get();
         $subscriptions = Subscription::join('books', 'books.id', '=', 'subscriptions.book_ID')
           ->select(
             'subscriptions.*',
             'books.name as bookName',
+            'books.image as image',
           )->orderBy('id', 'asc')->get();
         $comments = Comment::join('books', 'books.id', '=', 'comments.book_ID')
           ->select(
             'comments.*',
             'books.name as bookName',
+            'books.image as image',
           )->orderBy('id', 'asc')->get();
 
         return view('home', [
@@ -56,7 +57,6 @@ class HomeController extends Controller
             'borrows' => $borrows,
             'users' => $users,
             'books' => $books,
-            'authors' => $authors,
             'subscriptions' => $subscriptions,
             'comments' => $comments,
           ]);

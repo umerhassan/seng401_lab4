@@ -33,10 +33,6 @@ Route::post('/books/changeBook', 'BookController@changeBook');
 
 Route::post('/books/removeBook', 'BookController@removeBook');
 
-Route::post('/authors/changeAuthor', 'AuthorController@changeAuthor');
-
-Route::post('/authors/removeAuthor', 'AuthorController@removeAuthor');
-
 Route::post('/subscriptions/changeSubscription', 'SubscriptionController@changeSubscription');
 
 Auth::routes();
